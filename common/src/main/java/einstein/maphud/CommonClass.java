@@ -2,6 +2,8 @@ package einstein.maphud;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import me.fzzyhmstrs.fzzy_config.api.ConfigApiJava;
+import me.fzzyhmstrs.fzzy_config.api.RegisterType;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -17,12 +19,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.MapItem;
 import net.minecraft.world.level.saveddata.maps.MapId;
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 
 public class CommonClass {
 
     private static final ResourceLocation MAP_BACKGROUND = ResourceLocation.withDefaultNamespace("textures/map/map_background.png");
     private static final ResourceLocation MAP_BACKGROUND_CHECKERBOARD = ResourceLocation.withDefaultNamespace("textures/map/map_background_checkerboard.png");
+    public static final ModConfigs CONFIGS = ConfigApiJava.registerAndLoadConfig(ModConfigs::new, RegisterType.CLIENT);
 
     public static void init() {
     }
@@ -39,6 +43,10 @@ public class CommonClass {
             return;
         }
 
+        if (!CONFIGS.visibleInAllPerspectives && minecraft.options.getCameraType().isFirstPerson()) {
+            return;
+        }
+
         MapId mapId = getMapID(player);
         if (mapId != null) {
             MapItemSavedData mapData = MapItem.getSavedData(mapId, level);
@@ -46,7 +54,7 @@ public class CommonClass {
             MultiBufferSource.BufferSource buffer = guiGraphics.bufferSource();
 
             poseStack.pushPose();
-            poseStack.scale(0.75F, 0.75F, 0);
+            poseStack.scale(CONFIGS.mapScale.get(), CONFIGS.mapScale.get(), 0);
 
             int packedLight = LightTexture.FULL_BRIGHT;
             VertexConsumer consumer = buffer.getBuffer(RenderType.text(mapData == null ? MAP_BACKGROUND : MAP_BACKGROUND_CHECKERBOARD));
@@ -66,7 +74,7 @@ public class CommonClass {
         }
     }
 
-//    @Nullable // wheres the jetbrains nullable???
+    @Nullable
     private static MapId getMapID(Player player) {
         for (InteractionHand hand : InteractionHand.values()) {
             ItemStack stack = player.getItemInHand(hand);

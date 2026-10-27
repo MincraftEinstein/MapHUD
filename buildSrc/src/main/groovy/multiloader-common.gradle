@@ -23,6 +23,7 @@ repositories {
         }
         filter { includeGroupAndSubgroups('org.spongepowered') }
     }
+
     exclusiveContent {
         forRepositories(
                 maven {
@@ -36,9 +37,15 @@ repositories {
         )
         filter { includeGroup('org.parchmentmc.data') }
     }
+
     maven {
         name = 'BlameJared'
         url = 'https://maven.blamejared.com'
+    }
+
+    maven {
+        name = "FzzyMaven"
+        url = "https://maven.fzzyhmstrs.me/"
     }
 }
 
