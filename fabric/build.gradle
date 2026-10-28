@@ -15,8 +15,8 @@ dependencies {
         officialMojangMappings()
         parchment("org.parchmentmc.data:parchment-${parchment_minecraft}:${parchment_version}@zip")
     }
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    modImplementation "net.fabricmc:fabric-loader:${fabric_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
     modImplementation("com.terraformersmc:modmenu:${modmenu_version}")
     modImplementation("me.fzzyhmstrs:fzzy_config:${fzzy_config_version}")
 }
@@ -26,9 +26,11 @@ loom {
     if (aw.exists()) {
         accessWidenerPath.set(aw)
     }
+
     mixin {
         defaultRefmapName.set("${mod_id}.refmap.json")
     }
+
     runs {
         client {
             client()
@@ -36,6 +38,7 @@ loom {
             ideConfigGenerated(true)
             runDir('runs/client')
         }
+
         server {
             server()
             setConfigName('Fabric Server')

@@ -8,28 +8,39 @@
     "${mod_author}"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://curseforge.com/minecraft/mc-mods/maphud",
+    "sources": "https://github.com/MincraftEinstein/MapHUD",
+    "issues": "https://github.com/MincraftEinstein/MapHUD/issues"
   },
   "license": "${license}",
-  "icon": "${mod_id}.png",
-  "environment": "*",
+  "icon": "pack.png",
+  "environment": "client",
   "entrypoints": {
     "main": [
-      "einstein.maphud.MapHUD"
+      "einstein.maphud.MapHUDFabric"
     ]
   },
   "mixins": [
-    "${mod_id}.mixins.json",
-    "${mod_id}.fabric.mixins.json"
+    "maphud.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${fabric_loader_version}",
-    "fabric-api": "*",
-    "minecraft": "${minecraft_version}",
-    "java": ">=${java_version}"
+    "fabricloader": ">=${fabric_version}",
+    "fabric-api": ">=${fabric_api_version}",
+    "minecraft": ">=${minecraft_version} <${max_minecraft_version}",
+    "java": ">=${java_version}",
+    "fzzy_config": ">=${fzzy_config_version}"
   },
-  "suggests": {
-    "another-mod": "*"
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.modrinth": "https://modrinth.com/mod/maphud",
+        "modmenu.curseforge": "https://curseforge.com/minecraft/mc-mods/maphud",
+        "modmenu.discord": "https://discord.gg/gSsaFAvrBM",
+        "modmenu.kofi": "https://ko-fi.com/mincrafteinstein"
+      }
+    },
+    "fzzy_config": [
+      "${mod_id}"
+    ]
   }
 }

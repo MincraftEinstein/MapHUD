@@ -18,6 +18,6 @@ public class ModConfigs extends Config {
     public boolean renderMapBackground = true;
 
     public ModConfigs() {
-        super(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "main"), "", "", Constants.MOD_ID);
+        super(ResourceLocation.fromNamespaceAndPath(MapHUD.MOD_ID, "main"), "", "", MapHUD.MOD_ID);
     }
 }
