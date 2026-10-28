@@ -170,10 +170,12 @@ public class CommonClass {
             VertexConsumer consumer = buffer.getBuffer(RenderType.text(mapData == null ? MAP_BACKGROUND : MAP_BACKGROUND_CHECKERBOARD));
             Matrix4f matrix4f = poseStack.last().pose();
 
-            consumer.addVertex(matrix4f, 0, bgSize, 0).setColor(-1).setUv(0, 1).setLight(packedLight);
-            consumer.addVertex(matrix4f, bgSize, bgSize, 0).setColor(-1).setUv(1, 1).setLight(packedLight);
-            consumer.addVertex(matrix4f, bgSize, 0, 0).setColor(-1).setUv(1, 0).setLight(packedLight);
-            consumer.addVertex(matrix4f, 0, 0, 0).setColor(-1).setUv(0, 0).setLight(packedLight);
+            if (CONFIGS.renderMapBackground) {
+                consumer.addVertex(matrix4f, 0, bgSize, 0).setColor(-1).setUv(0, 1).setLight(packedLight);
+                consumer.addVertex(matrix4f, bgSize, bgSize, 0).setColor(-1).setUv(1, 1).setLight(packedLight);
+                consumer.addVertex(matrix4f, bgSize, 0, 0).setColor(-1).setUv(1, 0).setLight(packedLight);
+                consumer.addVertex(matrix4f, 0, 0, 0).setColor(-1).setUv(0, 0).setLight(packedLight);
+            }
 
             if (mapData != null) {
                 poseStack.translate(7, 7, 0);

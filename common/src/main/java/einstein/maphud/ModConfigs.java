@@ -15,6 +15,7 @@ public class ModConfigs extends Config {
     public ValidatedInt mapScale = new ValidatedInt(2, 3, 1);
     public ValidatedFloat mapXPos = new ValidatedFloat(0, 1, 0);
     public ValidatedFloat mapYPos = new ValidatedFloat(0, 1, 0);
+    public boolean renderMapBackground = true;
 
     public ModConfigs() {
         super(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "main"), "", "", Constants.MOD_ID);
