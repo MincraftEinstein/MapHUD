@@ -1,6 +1,7 @@
 package einstein.maphud;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import me.fzzyhmstrs.fzzy_config.annotations.Translation;
 import me.fzzyhmstrs.fzzy_config.config.Config;
 import me.fzzyhmstrs.fzzy_config.screen.context.FzzyKeybind;
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedKeybind;
@@ -8,6 +9,7 @@ import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedFloat;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
 import net.minecraft.resources.ResourceLocation;
 
+@Translation(prefix = "config." + MapHUD.MOD_ID)
 public class ModConfigs extends Config {
 
     public boolean visibleInAllPerspectives = false;

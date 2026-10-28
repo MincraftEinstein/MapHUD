@@ -1,0 +1,12 @@
+{
+  "config.maphud": "Map HUD Config",
+  "config.maphud.visibleInAllPerspectives": "Visible In All Perspectives",
+  "config.maphud.visibleInAllPerspectives.desc": "Should the map HUD be visible in all perspectives or only in third person",
+  "config.maphud.selectSlotKey": "Select Slot Key",
+  "config.maphud.selectSlotKey.desc": "Toggles the selected map. Toggled maps will remain visible as long as the map stays in your inventory. To toggle a map either hold the map in your hand or hover over the slot in your inventory, and press the keybind",
+  "config.maphud.mapScale": "Map Scale",
+  "config.maphud.mapXPos": "Map X Pos",
+  "config.maphud.mapYPos": "Map Y Pos",
+  "config.maphud.renderMapBackground": "Render Map Background",
+  "config.maphud.renderMapBackground.desc": "Should the map background texture be rendered"
+}
