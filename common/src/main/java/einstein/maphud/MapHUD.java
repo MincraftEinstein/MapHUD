@@ -42,6 +42,7 @@ public class MapHUD {
     private static Pair<MapId, ItemStack> PERSISTENT_MAP_ID = null;
     private static MapId SELECTED_MAP_ID = null;
 
+    // TODO logo, maybe like a stylized pixel-art of the hud, but really focused in on a map in the corner
     public static void init() {
     }
 
@@ -180,10 +181,10 @@ public class MapHUD {
                 consumer.addVertex(matrix4f, bgSize, bgSize, 0).setColor(-1).setUv(1, 1).setLight(packedLight);
                 consumer.addVertex(matrix4f, bgSize, 0, 0).setColor(-1).setUv(1, 0).setLight(packedLight);
                 consumer.addVertex(matrix4f, 0, 0, 0).setColor(-1).setUv(0, 0).setLight(packedLight);
+                poseStack.translate(7, 7, 0);
             }
 
             if (mapData != null) {
-                poseStack.translate(7, 7, 0);
                 minecraft.gameRenderer.getMapRenderer().render(poseStack, buffer, mapId, mapData, false, packedLight);
                 guiGraphics.flush();
             }
