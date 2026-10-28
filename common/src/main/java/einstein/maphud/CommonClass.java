@@ -158,17 +158,21 @@ public class CommonClass {
             MapItemSavedData mapData = MapItem.getSavedData(mapId, level);
             PoseStack poseStack = guiGraphics.pose();
             MultiBufferSource.BufferSource buffer = guiGraphics.bufferSource();
+            float scale = CONFIGS.mapScale.get() / 2F;
+            int bgSize = 142;
+            float bgSizeScaled = bgSize * scale;
 
             poseStack.pushPose();
-            poseStack.scale(CONFIGS.mapScale.get(), CONFIGS.mapScale.get(), 0);
+            poseStack.translate(Math.round(CONFIGS.mapXPos.get() * (guiGraphics.guiWidth() - bgSizeScaled)), Math.round(CONFIGS.mapYPos.get() * (guiGraphics.guiHeight() - bgSizeScaled)), 0);
+            poseStack.scale(scale, scale, -1);
 
             int packedLight = LightTexture.FULL_BRIGHT;
             VertexConsumer consumer = buffer.getBuffer(RenderType.text(mapData == null ? MAP_BACKGROUND : MAP_BACKGROUND_CHECKERBOARD));
             Matrix4f matrix4f = poseStack.last().pose();
 
-            consumer.addVertex(matrix4f, 0, 141.9F, 0).setColor(-1).setUv(0, 1).setLight(packedLight);
-            consumer.addVertex(matrix4f, 141.9F, 141.9F, 0).setColor(-1).setUv(1, 1).setLight(packedLight);
-            consumer.addVertex(matrix4f, 141.9F, 0, 0).setColor(-1).setUv(1, 0).setLight(packedLight);
+            consumer.addVertex(matrix4f, 0, bgSize, 0).setColor(-1).setUv(0, 1).setLight(packedLight);
+            consumer.addVertex(matrix4f, bgSize, bgSize, 0).setColor(-1).setUv(1, 1).setLight(packedLight);
+            consumer.addVertex(matrix4f, bgSize, 0, 0).setColor(-1).setUv(1, 0).setLight(packedLight);
             consumer.addVertex(matrix4f, 0, 0, 0).setColor(-1).setUv(0, 0).setLight(packedLight);
 
             if (mapData != null) {
